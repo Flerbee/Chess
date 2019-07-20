@@ -1,0 +1,224 @@
+from tkinter import *
+
+
+def dog():
+    print('i like dogs')
+
+
+def cat():
+    print('cats')
+
+
+
+
+
+
+class Chess:
+    def chess_board():
+        # chessboard = PhotoImage(file='chessboard.png')
+        # chessbo = Label(root, image=chessboard)
+        # chessbo.photo = chessboard
+        # chessbo.pack(side=LEFT)
+
+        A8 = Button(root, width=71, height=71, bg='brown', command=lambda: square.call_cell(square, square.rank[0], square.file[7]))
+        A8.place(x=24, y=22)
+        B8 = Button(root, width=71, height=71, bg='brown', command=lambda: square.call_cell(square, square.rank[1], square.file[7]))
+        B8.place(x=24 + 71, y=22)
+        C8 = Button(root, width=71, height=71, bg='brown', command=lambda: square.call_cell(square, square.rank[2], square.file[7]))
+        C8.place(x=24 + 71 * 2, y=22)
+        D8 = Button(root, width=71, height=71, bg='brown', command=lambda: square.call_cell(square, square.rank[3], square.file[7]))
+        D8.place(x=24 + 71 * 3, y=22)
+        E8 = Button(root, width=71, height=71, bg='brown', command=lambda: square.call_cell(square, square.rank[4], square.file[7]))
+        E8.place(x=24 + 71 * 4, y=22)
+        F8 = Button(root, width=71, height=71, bg='brown', command=lambda: square.call_cell(square, square.rank[5], square.file[7]))
+        F8.place(x=24 + 71 * 5, y=22)
+        G8 = Button(root, width=71, height=71, bg='brown', command=lambda: square.call_cell(square, square.rank[6], square.file[7]))
+        G8.place(x=24 + 71 * 6, y=22)
+        H8 = Button(root, width=71, height=71, bg='brown', command=lambda: square.call_cell(square, square.rank[7], square.file[7]))
+        H8.place(x=24 + 71 * 7, y=22)
+
+        A7 = Button(root, width=71, height=71, bg='brown', command=lambda: square.call_cell(square, square.rank[0], square.file[6]))
+        A7.place(x=24, y=22 + 71)
+        B7 = Button(root, width=71, height=71, bg='brown', command=lambda: square.call_cell(square, square.rank[1], square.file[6]))
+        B7.place(x=24 + 71, y=22 + 71)
+        C7 = Button(root, width=71, height=71, bg='brown', command=lambda: square.call_cell(square, square.rank[2], square.file[6]))
+        C7.place(x=24 + 71 * 2, y=22 + 71)
+        D7 = Button(root, width=71, height=71, bg='brown', command=lambda: square.call_cell(square, square.rank[3], square.file[6]))
+        D7.place(x=24 + 71 * 3, y=22 + 71)
+        E7 = Button(root, width=71, height=71, bg='brown', command=lambda: square.call_cell(square, square.rank[4], square.file[6]))
+        E7.place(x=24 + 71 * 4, y=22 + 71)
+        F7 = Button(root, width=71, height=71, bg='brown', command=lambda: square.call_cell(square, square.rank[5], square.file[6]))
+        F7.place(x=24 + 71 * 5, y=22 + 71)
+        G7 = Button(root, width=71, height=71, bg='brown', command=lambda: square.call_cell(square, square.rank[6], square.file[6]))
+        G7.place(x=24 + 71 * 6, y=22 + 71)
+        H7 = Button(root, width=71, height=71, bg='brown', command=lambda: square.call_cell(square, square.rank[7], square.file[6]))
+        H7.place(x=24 + 71 * 7, y=22 + 71)
+
+        A6 = Button(root, width=71, height=71, bg='brown', command=lambda: square.call_cell(square, square.rank[0], square.file[5]))
+        A6.place(x=24, y=22 + 71 * 2)
+        B6 = Button(root, width=71, height=71, bg='brown', command=lambda: square.call_cell(square, square.rank[1], square.file[5]))
+        B6.place(x=24 + 71, y=22 + 71 * 2)
+        C6 = Button(root, width=71, height=71, bg='brown', command=lambda: square.call_cell(square, square.rank[2], square.file[5]))
+        C6.place(x=24 + 71 * 2, y=22 + 71 * 2)
+        D6 = Button(root, width=71, height=71, bg='brown', command=lambda: square.call_cell(square, square.rank[3], square.file[5]))
+        D6.place(x=24 + 71 * 3, y=22 + 71 * 2)
+        E6 = Button(root, width=71, height=71, bg='brown', command=lambda: square.call_cell(square, square.rank[4], square.file[5]))
+        E6.place(x=24 + 71 * 4, y=22 + 71 * 2)
+        F6 = Button(root, width=71, height=71, bg='brown', command=lambda: square.call_cell(square, square.rank[5], square.file[5]))
+        F6.place(x=24 + 71 * 5, y=22 + 71 * 2)
+        G6 = Button(root, width=71, height=71, bg='brown', command=lambda: square.call_cell(square, square.rank[6], square.file[5]))
+        G6.place(x=24 + 71 * 6, y=22 + 71 * 2)
+        H6 = Button(root, width=71, height=71, bg='brown', command=lambda: square.call_cell(square, square.rank[7], square.file[5]))
+        H6.place(x=24 + 71 * 7, y=22 + 71 * 2)
+
+        A5 = Button(root, width=71, height=71, bg='brown', command=lambda: square.call_cell(square, square.rank[0], square.file[4]))
+        A5.place(x=24, y=22 + 71 * 3)
+        B5 = Button(root, width=71, height=71, bg='brown', command=lambda: square.call_cell(square, square.rank[1], square.file[4]))
+        B5.place(x=24 + 71, y=22 + 71 * 3)
+        C5 = Button(root, width=71, height=71, bg='brown', command=lambda: square.call_cell(square, square.rank[2], square.file[4]))
+        C5.place(x=24 + 71 * 2, y=22 + 71 * 3)
+        D5 = Button(root, width=71, height=71, bg='brown', command=lambda: square.call_cell(square, square.rank[3], square.file[4]))
+        D5.place(x=24 + 71 * 3, y=22 + 71 * 3)
+        E5 = Button(root, width=71, height=71, bg='brown', command=lambda: square.call_cell(square, square.rank[4], square.file[4]))
+        E5.place(x=24 + 71 * 4, y=22 + 71 * 3)
+        F5 = Button(root, width=71, height=71, bg='brown', command=lambda: square.call_cell(square, square.rank[5], square.file[4]))
+        F5.place(x=24 + 71 * 5, y=22 + 71 * 3)
+        G5 = Button(root, width=71, height=71, bg='brown', command=lambda: square.call_cell(square, square.rank[6], square.file[4]))
+        G5.place(x=24 + 71 * 6, y=22 + 71 * 3)
+        H5 = Button(root, width=71, height=71, bg='brown', command=lambda: square.call_cell(square, square.rank[7], square.file[4]))
+        H5.place(x=24 + 71 * 7, y=22 + 71 * 3)
+
+        A4 = Button(root, width=71, height=71, bg='brown', command=lambda: square.call_cell(square, square.rank[0], square.file[3]))
+        A4.place(x=24, y=22 + 71 * 4)
+        B4 = Button(root, width=71, height=71, bg='brown', command=lambda: square.call_cell(square, square.rank[1], square.file[3]))
+        B4.place(x=24 + 71, y=22 + 71 * 4)
+        C4 = Button(root, width=71, height=71, bg='brown', command=lambda: square.call_cell(square, square.rank[2], square.file[3]))
+        C4.place(x=24 + 71 * 2, y=22 + 71 * 4)
+        D4 = Button(root, width=71, height=71, bg='brown', command=lambda: square.call_cell(square, square.rank[3], square.file[3]))
+        D4.place(x=24 + 71 * 3, y=22 + 71 * 4)
+        E4 = Button(root, width=71, height=71, bg='brown', command=lambda: square.call_cell(square, square.rank[4], square.file[3]))
+        E4.place(x=24 + 71 * 4, y=22 + 71 * 4)
+        F4 = Button(root, width=71, height=71, bg='brown', command=lambda: square.call_cell(square, square.rank[5], square.file[3]))
+        F4.place(x=24 + 71 * 5, y=22 + 71 * 4)
+        G4 = Button(root, width=71, height=71, bg='brown', command=lambda: square.call_cell(square, square.rank[6], square.file[3]))
+        G4.place(x=24 + 71 * 6, y=22 + 71 * 4)
+        H4 = Button(root, width=71, height=71, bg='brown', command=lambda: square.call_cell(square, square.rank[7], square.file[3]))
+        H4.place(x=24 + 71 * 7, y=22 + 71 * 4)
+
+        A3 = Button(root, width=71, height=71, bg='brown', command=lambda: square.call_cell(square, square.rank[0], square.file[2]))
+        A3.place(x=24, y=22 + 71 * 5)
+        B3 = Button(root, width=71, height=71, bg='brown', command=lambda: square.call_cell(square, square.rank[1], square.file[2]))
+        B3.place(x=24 + 71, y=22 + 71 * 5)
+        C3 = Button(root, width=71, height=71, bg='brown', command=lambda: square.call_cell(square, square.rank[2], square.file[2]))
+        C3.place(x=24 + 71 * 2, y=22 + 71 * 5)
+        D3 = Button(root, width=71, height=71, bg='brown', command=lambda: square.call_cell(square, square.rank[3], square.file[2]))
+        D3.place(x=24 + 71 * 3, y=22 + 71 * 5)
+        E3 = Button(root, width=71, height=71, bg='brown', command=lambda: square.call_cell(square, square.rank[4], square.file[2]))
+        E3.place(x=24 + 71 * 4, y=22 + 71 * 5)
+        F3 = Button(root, width=71, height=71, bg='brown', command=lambda: square.call_cell(square, square.rank[5], square.file[2]))
+        F3.place(x=24 + 71 * 5, y=22 + 71 * 5)
+        G3 = Button(root, width=71, height=71, bg='brown', command=lambda: square.call_cell(square, square.rank[6], square.file[2]))
+        G3.place(x=24 + 71 * 6, y=22 + 71 * 5)
+        H3 = Button(root, width=71, height=71, bg='brown', command=lambda: square.call_cell(square, square.rank[7], square.file[2]))
+        H3.place(x=24 + 71 * 7, y=22 + 71 * 5)
+
+        A2 = Button(root, width=71, height=71, bg='brown', command=lambda: square.call_cell(square, square.rank[0], square.file[1]))
+        A2.place(x=24, y=22 + 71 * 6)
+        B2 = Button(root, width=71, height=71, bg='brown', command=lambda: square.call_cell(square, square.rank[1], square.file[1]))
+        B2.place(x=24 + 71, y=22 + 71 * 6)
+        C2 = Button(root, width=71, height=71, bg='brown', command=lambda: square.call_cell(square, square.rank[2], square.file[1]))
+        C2.place(x=24 + 71 * 2, y=22 + 71 * 6)
+        D2 = Button(root, width=71, height=71, bg='brown', command=lambda: square.call_cell(square, square.rank[3], square.file[1]))
+        D2.place(x=24 + 71 * 3, y=22 + 71 * 6)
+        E2 = Button(root, width=71, height=71, bg='brown', command=lambda: square.call_cell(square, square.rank[4], square.file[1]))
+        E2.place(x=24 + 71 * 4, y=22 + 71 * 6)
+        F2 = Button(root, width=71, height=71, bg='brown', command=lambda: square.call_cell(square, square.rank[5], square.file[1]))
+        F2.place(x=24 + 71 * 5, y=22 + 71 * 6)
+        G2 = Button(root, width=71, height=71, bg='brown', command=lambda: square.call_cell(square, square.rank[6], square.file[1]))
+        G2.place(x=24 + 71 * 6, y=22 + 71 * 6)
+        H2 = Button(root, width=71, height=71, bg='brown', command=lambda: square.call_cell(square, square.rank[7], square.file[1]))
+        H2.place(x=24 + 71 * 7, y=22 + 71 * 6)
+
+        A1 = Button(root, width=71, height=71, bg='brown', command=lambda: square.call_cell(square, square.rank[0], square.file[0]))
+        A1.place(x=24, y=22 + 71 * 7)
+        B1 = Button(root, width=71, height=71, bg='brown', command=lambda: square.call_cell(square, square.rank[1], square.file[0]))
+        B1.place(x=24 + 71, y=22 + 71 * 7)
+        C1 = Button(root, width=71, height=71, bg='brown', command=lambda: square.call_cell(square, square.rank[2], square.file[0]))
+        C1.place(x=24 + 71 * 2, y=22 + 71 * 7)
+        D1 = Button(root, width=71, height=71, bg='brown', command=lambda: square.call_cell(square, square.rank[3], square.file[0]))
+        D1.place(x=24 + 71 * 3, y=22 + 71 * 7)
+        E1 = Button(root, width=71, height=71, bg='brown', command=lambda: square.call_cell(square, square.rank[4], square.file[0]))
+        E1.place(x=24 + 71 * 4, y=22 + 71 * 7)
+        F1 = Button(root, width=71, height=71, bg='brown', command=lambda: square.call_cell(square, square.rank[5], square.file[0]))
+        F1.place(x=24 + 71 * 5, y=22 + 71 * 7)
+        G1 = Button(root, width=71, height=71, bg='brown', command=lambda: square.call_cell(square, square.rank[6], square.file[0]))
+        G1.place(x=24 + 71 * 6, y=22 + 71 * 7)
+        H1 = Button(root, width=71, height=71, bg='brown', command=lambda: square.call_cell(square, square.rank[7], square.file[0]))
+        H1.place(x=24 + 71 * 7, y=22 + 71 * 7)
+
+        fix1 = Frame(root, width=327, height=612, bg='brown')
+        fix1.place(x=24 + 71 * 8, y=0)
+        fix2 = Frame(root, height=21, width=612, bg='brown')
+        fix2.place(x=24, y=591)
+
+
+class Cells:
+    rank = []
+    for i in range(0, 8):
+        rank[i] = rank.append(None)
+    for i in range(0, 8):
+        rank[i] = str(chr(65 + i))
+
+    file = []
+    for i in range(0, 8):
+        file[i] = file.append(None)
+    for i in range(0, 8):
+        file[i] = str(int(1 + i))
+
+        position = None
+        # coordinate = []
+        # for i in range(0, 8):
+        #     coordinate[i] = coordinate.append(None)
+        # coordinate[i] = (f"")
+
+    def call_cell(self, r, f ):
+        coordinate = [r, f]
+        position = coordinate
+        print(position)
+
+
+
+
+
+square = Cells
+
+
+main = Chess
+root = Tk()
+root.config(background='brown')
+
+root.minsize(918, 612)
+root.maxsize(918, 612)
+
+
+milk = Menu(root)
+root.config(menu=milk)
+
+friendMenu = Menu(milk)
+milk.add_cascade(label="friends", menu=friendMenu)
+friendMenu.add_command(label='dogs', command=dog)
+friendMenu.add_separator()
+friendMenu.add_command(label='cats', command=cat)
+
+creditMenu = Menu(milk)
+milk.add_cascade(label='credits', menu=creditMenu)
+creditMenu.add_command(label='do you like cheese', command=dog)
+
+exitMenu = Menu(milk)
+milk.add_cascade(label='Exit', menu=exitMenu)
+exitMenu.add_command(label="Are you sure?", command=root.destroy)
+
+playButton = Button(root, text="Play Chess", width=20, height=3, fg="Black", bg="grey", command=main.chess_board).place(x=375, y=175)
+exitButton = Button(root, text='Exit', width=20, height=3, fg="Black", bg='grey', command=root.destroy).place(x=375, y=275)
+print(square.position)
+root.mainloop()
