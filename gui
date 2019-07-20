@@ -1,5 +1,5 @@
 from tkinter import *
-
+from backend import *
 
 def dog():
     print('i like dogs')
@@ -162,7 +162,7 @@ class Chess:
         fix2.place(x=24, y=591)
 
 
-class Cells:
+class Cells(Pieces):
     rank = []
     for i in range(0, 8):
         rank[i] = rank.append(None)
@@ -175,18 +175,36 @@ class Cells:
     for i in range(0, 8):
         file[i] = str(int(1 + i))
 
-        position = None
+    position = None
+    position2 = None
         # coordinate = []
         # for i in range(0, 8):
         #     coordinate[i] = coordinate.append(None)
         # coordinate[i] = (f"")
 
     def call_cell(self, r, f ):
-        coordinate = [r, f]
-        position = coordinate
-        print(position)
+        if Cells.position is None:
+            coordinate = [r, f]
+            Cells.position = coordinate
+            print(f"{Cells.position} is pickcell")
+            pickcell = Cells.position
 
 
+        else:
+            coordinate1 = [r, f]
+            position2 = coordinate1
+            print(f"{position2} is movecell")
+            movecell = position2
+            self.rook(self)
+            Cells.position = None
+
+
+
+    # square.call_cell(square, square.rank[7], square.file[0])
+    def move_cell(self, position):
+        movefile = file[3]
+        moverank = rank[4]
+        movecell = movefile + moverank
 
 
 
@@ -222,3 +240,4 @@ playButton = Button(root, text="Play Chess", width=20, height=3, fg="Black", bg=
 exitButton = Button(root, text='Exit', width=20, height=3, fg="Black", bg='grey', command=root.destroy).place(x=375, y=275)
 print(square.position)
 root.mainloop()
+
