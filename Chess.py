@@ -23,7 +23,7 @@ bqueenpic = PhotoImage(file='queenb.png')
 bknightpic = PhotoImage(file='knightb.png')
 bbishoppic = PhotoImage(file='bishopb.png')
 brookpic = PhotoImage(file='rookb.png')
-nopic = PhotoImage()
+# nopic = PhotoImage()
 
 
 def dog():
@@ -143,6 +143,7 @@ class Chess:
 
         A4 = Button(root, image=pp.dicpic[pp.dic_chess['A4']], width=71, height=71, bg='brown',
                     command=lambda: [square.call_cell(square, square.rank[0], square.file[3]), dc.squarecheck()])
+        A4["activebackground"] = 'brown'
         A4.place(x=24, y=22 + 71 * 4)
         B4 = Button(root, image=pp.dicpic[pp.dic_chess['B4']], width=71, height=71, bg='darkred',
                     command=lambda: [square.call_cell(square, square.rank[1], square.file[3]), dc.squarecheck()])
@@ -301,7 +302,7 @@ class PiecePosition:
                  'G2': 'wpawn7',
                  'H2': 'wpawn8',
                  'A3': '', 'B3': '', 'C3': '', 'D3': '', 'E3': '', 'F3': '', 'G3': '', 'H3': '',
-                 'A4': '', 'B4': '', 'C4': '', 'D4': 'wrook1', 'E4': '', 'F4': '', 'G4': '', 'H4': '',
+                 'A4': '', 'B4': '', 'C4': '', 'D4': 'bbishop1', 'E4': '', 'F4': '', 'G4': '', 'H4': '',
                  'A5': '', 'B5': '', 'C5': '', 'D5': '', 'E5': '', 'F5': '', 'G5': '', 'H5': '',
                  'A6': '', 'B6': '', 'C6': '', 'D6': '', 'E6': '', 'F6': '', 'G6': '', 'H6': '',
                  'A7': 'bpawn1', 'B7': 'bpawn2', 'C7': 'bpawn3', 'D7': 'bpawn4', 'E7': 'bpawn5', 'F7': 'bpawn6',
@@ -316,7 +317,7 @@ class PiecePosition:
               'wpawn5': wpawnpic, 'wpawn6': wpawnpic, 'wpawn7': wpawnpic, 'wpawn8': wpawnpic,
               'bpawn1': bpawnpic, 'bpawn2': bpawnpic, 'bpawn3': bpawnpic, 'bpawn4': bpawnpic,
               'bpawn5': bpawnpic, 'bpawn6': bpawnpic, 'bpawn7': bpawnpic, 'bpawn8': bpawnpic,
-              'wqueen': wqueenpic, 'bqueen': bqueenpic, 'wking': wkingpic, 'bking': bkingpic, '': nopic}
+              'wqueen': wqueenpic, 'bqueen': bqueenpic, 'wking': wkingpic, 'bking': bkingpic, '': None}
 
     def capture():
         # todo PiecePosition.dic_chess[f'{movecell}'] = sidebar
@@ -337,11 +338,166 @@ class PieceRules(PiecePosition):
         rm.whiterookleft()
         rm.whiterookdown()
         rm.whiterookup()
-
+    def bishop():
+        bm.whitebishopupright()
+        bm.whitebishopupleft()
+        bm.whitebishopdownright()
+        bm.whitebishopdownleft()
+    def bishopblack():
+        bm.blackbishopupright()
+        bm.blackbishopupleft()
+        bm.blackbishopdownright()
+        bm.blackbishopdownleft()
     # if cell[pickfile+pickrank] == 'wrook1' or cell[pickfile+pickrank] == 'wrook2' or
+    def queen():
+        qm.whitequeenright()
+        qm.whitequeenleft()
+        qm.whitequeenupright()
+        qm.whitequeendownright()
+        qm.whitequeendownleft()
+        qm.whitequeenupleft()
+        qm.whitequeenup()
+        qm.whitequeendown()
+
+    def king():
+        km.whitekingright()
+        km.whitekingleft()
+        km.whitekingupright()
+        km.whitekingdownright()
+        km.whitekingdownleft()
+        km.whitekingupleft()
+        km.whitekingup()
+        km.whitekingdown()
+
+class ValidKingMovement(PiecePosition):
 
 
-# cell[pickfile+pickrank] == 'brook1' or cell[pickfile+pickrank] == 'brook2':
+    possible_king_move = []
+    possible_king_capture = []
+
+    def whitekingright():
+
+        x = pickfile
+        y = pickrank
+
+        if ord(x) <= 71:
+            x = str(chr(ord(x) + 1))
+            if PiecePosition.dic_chess[f"{x}{y}"] == '':
+                ValidKingMovement.possible_king_move.append(f'{x}{y}')
+
+            elif PiecePosition.dic_chess[f"{x}{y}"][0] == 'b':
+                ValidKingMovement.possible_king_capture.append(f'{x}{y}')
+
+            else:
+                pass
+    def whitekingleft():
+
+        x = pickfile
+        y = pickrank
+
+        if ord(x) >= 66:
+            x = str(chr(ord(x) - 1))
+            if PiecePosition.dic_chess[f"{x}{y}"] == '':
+                ValidKingMovement.possible_king_move.append(f'{x}{y}')
+
+            elif PiecePosition.dic_chess[f"{x}{y}"][0] == 'b':
+                ValidKingMovement.possible_king_capture.append(f'{x}{y}')
+
+            else:
+                pass
+    def whitekingup():
+
+        x = pickfile
+        y = pickrank
+
+        if int(y) <= 7:
+            y = int(y) + 1
+            if PiecePosition.dic_chess[f"{x}{y}"] == '':
+                ValidKingMovement.possible_king_move.append(f'{x}{y}')
+
+            elif PiecePosition.dic_chess[f"{x}{y}"][0] == 'b':
+                ValidKingMovement.possible_king_capture.append(f'{x}{y}')
+
+            else:
+                pass
+    def whitekingdown():
+
+        x = pickfile
+        y = pickrank
+
+        if int(y) >= 2:
+            y = int(y) - 1
+            if PiecePosition.dic_chess[f"{x}{y}"] == '':
+                ValidKingMovement.possible_king_move.append(f'{x}{y}')
+
+            elif PiecePosition.dic_chess[f"{x}{y}"][0] == 'b':
+                ValidKingMovement.possible_king_capture.append(f'{x}{y}')
+
+            else:
+                pass
+    def whitekingupright():
+        x = pickfile
+        y = pickrank
+        if int(y) <= 7 and ord(x) <= 71:
+            y = int(y) + 1
+            x = str(chr(ord(x) + 1))
+            if PiecePosition.dic_chess[f"{x}{y}"] == '':
+                ValidKingMovement.possible_king_move.append(f'{x}{y}')
+
+            elif PiecePosition.dic_chess[f"{x}{y}"][0] == 'b':
+                ValidKingMovement.possible_king_capture.append(f'{x}{y}')
+
+            else:
+                pass
+    def whitekingupleft():
+        x = pickfile
+        y = pickrank
+        if int(y) <= 7 and ord(x) >= 66:
+            y = int(y) + 1
+            x = str(chr(ord(x) -1))
+            if PiecePosition.dic_chess[f"{x}{y}"] == '':
+                ValidKingMovement.possible_king_move.append(f'{x}{y}')
+
+            elif PiecePosition.dic_chess[f"{x}{y}"][0] == 'b':
+                ValidKingMovement.possible_king_capture.append(f'{x}{y}')
+
+            else:
+                pass
+    def whitekingdownright():
+        x = pickfile
+        y = pickrank
+        if int(y) >= 2 and ord(x) <= 71:
+            y = int(y) - 1
+            x = str(chr(ord(x) + 1))
+        if PiecePosition.dic_chess[f"{x}{y}"] == '':
+            ValidKingMovement.possible_king_move.append(f'{x}{y}')
+
+        elif PiecePosition.dic_chess[f"{x}{y}"][0] == 'b':
+            ValidKingMovement.possible_king_capture.append(f'{x}{y}')
+
+        else:
+            pass
+    def whitekingdownleft():
+        x = pickfile
+        y = pickrank
+        if int(y) >= 2 and ord(x) >= 66:
+            y = int(y) - 1
+            x = str(chr(ord(x) - 1))
+            if PiecePosition.dic_chess[f"{x}{y}"] == '':
+                ValidKingMovement.possible_king_move.append(f'{x}{y}')
+
+            elif PiecePosition.dic_chess[f"{x}{y}"][0] == 'b':
+                ValidKingMovement.possible_king_capture.append(f'{x}{y}')
+
+            else:
+                pass
+
+
+
+
+
+
+            # cell[pickfile+pickrank] == 'brook1' or cell[pickfile+pickrank] == 'brook2':
 # FIXME calling all pickfile and pickrank 'x' and 'y' might cause some problems so we can decide
 # if we wanna change those variables or if that is redundant
 
@@ -417,10 +573,273 @@ class ValidRookMovement(PiecePosition):
             else:
                 break
 
+class ValidBishopMovement(PiecePosition):
+    possible_bishop_move = []
+    possible_bishop_capture = []
 
-class DicCheck(ValidRookMovement):
+    def whitebishopupright():
+        x = pickfile
+        y = pickrank
+        while int(y) <= 7 and ord(x) <= 71:
+            y = int(y) + 1
+            x = str(chr(ord(x) + 1))
+
+            if PiecePosition.dic_chess[f"{x}{y}"] == '':
+                ValidBishopMovement.possible_bishop_move.append(f'{x}{y}')
+
+            elif PiecePosition.dic_chess[f"{x}{y}"][0] == 'b':
+                ValidBishopMovement.possible_bishop_capture.append(f'{x}{y}')
+                break
+            else:
+                break
+    def blackbishopupright():
+        x = pickfile
+        y = pickrank
+        while int(y) <= 7 and ord(x) <= 71:
+            y = int(y) - 1
+            x = str(chr(ord(x) - 1))
+
+            if PiecePosition.dic_chess[f"{x}{y}"] == '':
+                ValidBishopMovement.possible_bishop_move.append(f'{x}{y}')
+
+            elif PiecePosition.dic_chess[f"{x}{y}"][0] == 'w':
+                ValidBishopMovement.possible_bishop_capture.append(f'{x}{y}')
+                break
+            else:
+                break
+
+    def whitebishopupleft():
+        x = pickfile
+        y = pickrank
+        while int(y) <= 7 and ord(x) >= 66:
+            y = int(y) + 1
+            x = str(chr(ord(x) - 1))
+
+            if PiecePosition.dic_chess[f"{x}{y}"] == '':
+                ValidBishopMovement.possible_bishop_move.append(f'{x}{y}')
+
+            elif PiecePosition.dic_chess[f"{x}{y}"][0] == 'b':
+                ValidBishopMovement.possible_bishop_capture.append(f'{x}{y}')
+                break
+            else:
+                break
+
+    def blackbishopupleft():
+        x = pickfile
+        y = pickrank
+        while int(y) <= 7 and ord(x) >= 66:
+            y = int(y) - 1
+            x = str(chr(ord(x) + 1))
+
+            if PiecePosition.dic_chess[f"{x}{y}"] == '':
+                ValidBishopMovement.possible_bishop_move.append(f'{x}{y}')
+
+            elif PiecePosition.dic_chess[f"{x}{y}"][0] == 'w':
+                ValidBishopMovement.possible_bishop_capture.append(f'{x}{y}')
+                break
+            else:
+                break
+    def whitebishopdownright():
+        x = pickfile
+        y = pickrank
+        while int(y) >= 2 and ord(x) <= 71:
+            y = int(y) - 1
+            x = str(chr(ord(x) + 1))
+
+            if PiecePosition.dic_chess[f"{x}{y}"] == '':
+                ValidBishopMovement.possible_bishop_move.append(f'{x}{y}')
+
+            elif PiecePosition.dic_chess[f"{x}{y}"][0] == 'b':
+                ValidBishopMovement.possible_bishop_capture.append(f'{x}{y}')
+                break
+            else:
+                break
+    def blackbishopdownright():
+        x = pickfile
+        y = pickrank
+        while int(y) >= 2 and ord(x) <= 71:
+            y = int(y) + 1
+            x = str(chr(ord(x) - 1))
+
+            if PiecePosition.dic_chess[f"{x}{y}"] == '':
+                ValidBishopMovement.possible_bishop_move.append(f'{x}{y}')
+
+            elif PiecePosition.dic_chess[f"{x}{y}"][0] == 'w':
+                ValidBishopMovement.possible_bishop_capture.append(f'{x}{y}')
+                break
+            else:
+                break
+    def whitebishopdownleft():
+
+        x = pickfile
+        y = pickrank
+        while int(y) >= 2 and ord(x) >= 66:
+            y = int(y) - 1
+            x = str(chr(ord(x) - 1))
+
+            if PiecePosition.dic_chess[f"{x}{y}"] == '':
+                ValidBishopMovement.possible_bishop_move.append(f'{x}{y}')
+
+            elif PiecePosition.dic_chess[f"{x}{y}"][0] == 'b':
+                ValidBishopMovement.possible_bishop_capture.append(f'{x}{y}')
+                break
+            else:
+                break
+    def blackbishopdownleft():
+
+        x = pickfile
+        y = pickrank
+        while int(y) >= 2 and ord(x) >= 66:
+            y = int(y) + 1
+            x = str(chr(ord(x) + 1))
+
+            if PiecePosition.dic_chess[f"{x}{y}"] == '':
+                ValidBishopMovement.possible_bishop_move.append(f'{x}{y}')
+
+            elif PiecePosition.dic_chess[f"{x}{y}"][0] == 'w':
+                ValidBishopMovement.possible_bishop_capture.append(f'{x}{y}')
+                break
+            else:
+                break
+
+class ValidQueenMovement(PiecePosition):
+    possible_queen_move = []
+    possible_queen_capture = []
+
+    def whitequeenupright():
+        x = pickfile
+        y = pickrank
+        while int(y) <= 7 and ord(x) <= 71:
+            y = int(y) + 1
+            x = str(chr(ord(x) + 1))
+
+            if PiecePosition.dic_chess[f"{x}{y}"] == '':
+                ValidQueenMovement.possible_queen_move.append(f'{x}{y}')
+
+            elif PiecePosition.dic_chess[f"{x}{y}"][0] == 'b':
+                ValidQueenMovement.possible_queen_capture.append(f'{x}{y}')
+                break
+            else:
+                break
+    def whitequeendownleft():
+        x = pickfile
+        y = pickrank
+        while int(y) >= 2 and ord(x) >= 66:
+            y = int(y) - 1
+            x = str(chr(ord(x) - 1))
+
+            if PiecePosition.dic_chess[f"{x}{y}"] == '':
+                ValidQueenMovement.possible_queen_move.append(f'{x}{y}')
+
+            elif PiecePosition.dic_chess[f"{x}{y}"][0] == 'b':
+                ValidQueenMovement.possible_queen_capture.append(f'{x}{y}')
+                break
+            else:
+                break
+
+    def whitequeendownright():
+        x = pickfile
+        y = pickrank
+        while int(y) >= 2 and ord(x) <= 71:
+            y = int(y) - 1
+            x = str(chr(ord(x) + 1))
+
+            if PiecePosition.dic_chess[f"{x}{y}"] == '':
+                ValidQueenMovement.possible_queen_move.append(f'{x}{y}')
+
+            elif PiecePosition.dic_chess[f"{x}{y}"][0] == 'b':
+                ValidQueenMovement.possible_queen_capture.append(f'{x}{y}')
+                break
+            else:
+                break
+
+    def whitequeenupleft():
+        x = pickfile
+        y = pickrank
+        while int(y) <= 7 and ord(x) >= 66:
+            y = int(y) + 1
+            x = str(chr(ord(x) - 1))
+
+            if PiecePosition.dic_chess[f"{x}{y}"] == '':
+                ValidQueenMovement.possible_queen_move.append(f'{x}{y}')
+
+            elif PiecePosition.dic_chess[f"{x}{y}"][0] == 'b':
+                ValidQueenMovement.possible_queen_capture.append(f'{x}{y}')
+                break
+            else:
+                break
+
+    def whitequeendown():
+
+        x = pickfile
+        y = pickrank
+
+        while int(y) >= 2:
+            y = int(y) - 1
+
+            if PiecePosition.dic_chess[f"{x}{y}"] == '':
+                ValidQueenMovement.possible_queen_move.append(f'{x}{y}')
+
+            elif PiecePosition.dic_chess[f"{x}{y}"][0] == 'b':
+                ValidQueenMovement.possible_queen_capture.append(f'{x}{y}')
+                break
+            else:
+                break
+
+    def whitequeenup():
+
+        x = pickfile
+        y = pickrank
+
+        while int(y) <= 7:
+            y = int(y) + 1
+
+            if PiecePosition.dic_chess[f"{x}{y}"] == '':
+                ValidQueenMovement.possible_queen_move.append(f'{x}{y}')
+
+            elif PiecePosition.dic_chess[f"{x}{y}"][0] == 'b':
+                ValidQueenMovement.possible_queen_capture.append(f'{x}{y}')
+                break
+            else:
+                break
+
+    def whitequeenleft():
+
+        x = pickfile
+        y = pickrank
+
+        while ord(x) >= 66:
+            x = str(chr(ord(x) - 1))
+
+            if PiecePosition.dic_chess[f"{x}{y}"] == '':
+                ValidQueenMovement.possible_queen_move.append(f'{x}{y}')
+
+            elif PiecePosition.dic_chess[f"{x}{y}"][0] == 'b':
+                ValidQueenMovement.possible_queen_capture.append(f'{x}{y}')
+                break
+            else:
+                break
+    def whitequeenright():
+
+        x = pickfile
+        y = pickrank
+
+        while ord(x) <= 71:
+            x = str(chr(ord(x) + 1))
+
+            if PiecePosition.dic_chess[f"{x}{y}"] == '':
+                ValidQueenMovement.possible_queen_move.append(f'{x}{y}')
+
+            elif PiecePosition.dic_chess[f"{x}{y}"][0] == 'b':
+                ValidQueenMovement.possible_queen_capture.append(f'{x}{y}')
+                break
+            else:
+                break
+class DicCheck(ValidRookMovement,ValidBishopMovement):
 
     def movecheck():
+
+        #ROOOOOOOK
         movefile = movecell[0]
         moverank = movecell[1]
         dicmove =str(movecell[0] + movecell[1])
@@ -433,7 +852,47 @@ class DicCheck(ValidRookMovement):
             ValidRookMovement.possible_rook_capture = []
             ValidRookMovement.possible_rook_move = []
         else:
-            print(f"{dicmove} is not yogurt")
+            pass
+        #BISHUP
+        if dicmove in ValidBishopMovement.possible_bishop_move:
+            PiecePosition.movepiece()
+            print("dogs")
+            ValidBishopMovement.possible_bishop_move = []
+            ValidBishopMovement.possible_bishop_capture = []
+        elif dicmove in ValidBishopMovement.possible_bishop_capture:
+            PiecePosition.capture()
+            print("cats")
+            ValidBishopMovement.possible_bishop_capture = []
+            ValidBishopMovement.possible_bishop_move = []
+        else:
+            print("dogcats")
+        #QUEEEEEEN
+        if dicmove in ValidQueenMovement.possible_queen_move:
+            PiecePosition.movepiece()
+            print("dog1")
+            ValidQueenMovement.possible_queen_move = []
+            ValidQueenMovement.possible_queen_capture = []
+        elif dicmove in ValidQueenMovement.possible_queen_capture:
+            PiecePosition.capture()
+            print("cats1")
+            ValidQueenMovement.possible_queen_capture = []
+            ValidQueenMovement.possible_queen_move = []
+        else:
+            print("dogcats1")
+        ####KINNNG
+
+        if dicmove in ValidKingMovement.possible_king_move:
+            PiecePosition.movepiece()
+            print("dog5")
+            ValidKingMovement.possible_king_move = []
+            ValidKingMovement.possible_king_capture = []
+        elif dicmove in ValidKingMovement.possible_king_capture:
+            PiecePosition.capture()
+            print("cats5")
+            ValidKingMovement.possible_king_capture = []
+            ValidKingMovement.possible_king_move = []
+        else:
+            print("dogcats51")
 
     def squarecheck():
         pickfile = pickcell[0]
@@ -446,12 +905,15 @@ class DicCheck(ValidRookMovement):
 
             # possible move list will be reset, only for now. later we will bind it to happen when move cell is clicked
 
-        elif PiecePosition.dic_chess[dicpick] == 'wbishop1' or PiecePosition.dic_chess[dicpick] == 'wbishop2' or \
-                PiecePosition.dic_chess[dicpick] == 'bbishop1' or PiecePosition.dic_chess[dicpick] == 'bbishop2':
-            # mp.bishop()
+        elif PiecePosition.dic_chess[dicpick] == 'wbishop1' or PiecePosition.dic_chess[dicpick] == 'wbishop2':
+            mp.bishop()
+
+        elif PiecePosition.dic_chess[dicpick] == 'bbishop1' or PiecePosition.dic_chess[dicpick] == 'bbishop2':
+            mp.bishopblack()
+
             # print(rm.possible_bishop_capture)
             # print(rm.possible_bishop_move)
-            print('bishop nigga')
+            
         elif PiecePosition.dic_chess[dicpick] == 'wknight1' or PiecePosition.dic_chess[dicpick] == 'wknight2' or \
                 PiecePosition.dic_chess[dicpick] == 'bknight1' or PiecePosition.dic_chess[dicpick] == 'bknight2':
             print('knight nigga')
@@ -459,11 +921,12 @@ class DicCheck(ValidRookMovement):
         # print(rm.possible_knight_capture)
         # print(rm.possible_knight_move)
         elif PiecePosition.dic_chess[dicpick] == 'wqueen' or PiecePosition.dic_chess[dicpick] == 'bqueen':
-            print('queen nigga')
+           
+            mp.queen()
         elif PiecePosition.dic_chess[dicpick] == 'wking' or PiecePosition.dic_chess[dicpick] == 'bking':
-            print('king nigga')
+            mp.king()
         elif PiecePosition.dic_chess[dicpick] == '':
-            main.chess_board()
+            print("pick again ni")
 
         else:
             print('pawn nigga')
@@ -520,6 +983,8 @@ class Cells(DicCheck):
             moverank = movecell[1]
 
             self.movecheck()
+            if PiecePosition.dic_chess[movecell] != '':
+                main.chess_board()
             # PiecePosition.dic_chess[f'{movecell}'] = PiecePosition.dic_chess[f'{pickcell}']
             # PiecePosition.dic_chess[f'{pickcell}'] = ''
             Cells.position = None
@@ -528,6 +993,10 @@ class Cells(DicCheck):
 square = Cells
 dc = DicCheck
 rm = ValidRookMovement
+bm = ValidBishopMovement
+bbm = ValidBishopMovement
+qm = ValidQueenMovement
+km = ValidKingMovement
 mp = PieceRules
 pp = PiecePosition
 main = Chess
@@ -558,6 +1027,6 @@ playButton = Button(root, text="Play Chess", width=20, height=3, fg="Black", bg=
     x=375, y=175)
 exitButton = Button(root, text='Exit', width=20, height=3, fg="Black", bg='grey', command=root.destroy).place(x=375,
                                                                                                               y=275)
-print(square.position)
+
 root.mainloop()
 
