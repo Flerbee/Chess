@@ -1,3 +1,4 @@
+
 # todo we maaaaaybe need this function so adding it to do for safekeeping
 #  if
 #  cell[movefile+moverank] == cell[str(chr(ord(x)+1))+y] and cell[str(chr(ord(pickfile)+1))+str(int(pickrank)+1)] == '':
@@ -9,22 +10,20 @@ from tkinter import *
 
 root = Tk()
 
-wpawnpic = PhotoImage(file = 'pawnw.png')
-wkingpic = PhotoImage(file = 'kingw.png')
-wqueenpic = PhotoImage(file = 'queenw.png')
-wknightpic = PhotoImage(file = 'knightw.png')
-wbishoppic = PhotoImage(file = 'bishopw.png')
-wrookpic = PhotoImage(file = 'rookw.png')
+wpawnpic = PhotoImage(file='pawnw.png')
+wkingpic = PhotoImage(file='kingw.png')
+wqueenpic = PhotoImage(file='queenw.png')
+wknightpic = PhotoImage(file='knightw.png')
+wbishoppic = PhotoImage(file='bishopw.png')
+wrookpic = PhotoImage(file='rookw.png')
 
-bpawnpic = PhotoImage(file = 'pawnb.png')
-bkingpic = PhotoImage(file = 'kingb.png')
-bqueenpic = PhotoImage(file = 'queenb.png')
-bknightpic = PhotoImage(file = 'knightb.png')
-bbishoppic = PhotoImage(file = 'bishopb.png')
-brookpic = PhotoImage(file = 'rookb.png')
+bpawnpic = PhotoImage(file='pawnb.png')
+bkingpic = PhotoImage(file='kingb.png')
+bqueenpic = PhotoImage(file='queenb.png')
+bknightpic = PhotoImage(file='knightb.png')
+bbishoppic = PhotoImage(file='bishopb.png')
+brookpic = PhotoImage(file='rookb.png')
 nopic = PhotoImage()
-
-
 
 
 def dog():
@@ -298,7 +297,8 @@ class PiecePosition:
     # dictionary of cells
     dic_chess = {'A1': 'wrook1', 'B1': 'wknight1', 'C1': 'wbishop1', 'D1': 'wqueen', 'E1': 'wking', 'F1': 'wbishop2',
                  'G1': 'wknight2', 'H1': 'wrook2',
-                 'A2': 'wpawn1', 'B2': 'wpawn2', 'C2': 'wpawn3', 'D2': 'wpawn4', 'E2': 'wpawn5', 'F2': 'wpawn6', 'G2': 'wpawn7',
+                 'A2': 'wpawn1', 'B2': 'wpawn2', 'C2': 'wpawn3', 'D2': 'wpawn4', 'E2': 'wpawn5', 'F2': 'wpawn6',
+                 'G2': 'wpawn7',
                  'H2': 'wpawn8',
                  'A3': '', 'B3': '', 'C3': '', 'D3': '', 'E3': '', 'F3': '', 'G3': '', 'H3': '',
                  'A4': '', 'B4': '', 'C4': '', 'D4': 'wrook1', 'E4': '', 'F4': '', 'G4': '', 'H4': '',
@@ -317,7 +317,6 @@ class PiecePosition:
               'bpawn1': bpawnpic, 'bpawn2': bpawnpic, 'bpawn3': bpawnpic, 'bpawn4': bpawnpic,
               'bpawn5': bpawnpic, 'bpawn6': bpawnpic, 'bpawn7': bpawnpic, 'bpawn8': bpawnpic,
               'wqueen': wqueenpic, 'bqueen': bqueenpic, 'wking': wkingpic, 'bking': bkingpic, '': nopic}
-
 
     def capture():
         # todo PiecePosition.dic_chess[f'{movecell}'] = sidebar
@@ -419,7 +418,22 @@ class ValidRookMovement(PiecePosition):
                 break
 
 
-class DicCheck(PiecePosition):
+class DicCheck(ValidRookMovement):
+
+    def movecheck():
+        movefile = movecell[0]
+        moverank = movecell[1]
+        dicmove =str(movecell[0] + movecell[1])
+        if dicmove in ValidRookMovement.possible_rook_move:
+            PiecePosition.movepiece()
+            ValidRookMovement.possible_rook_move = []
+            ValidRookMovement.possible_rook_capture = []
+        elif dicmove in ValidRookMovement.possible_rook_capture:
+            PiecePosition.capture()
+            ValidRookMovement.possible_rook_capture = []
+            ValidRookMovement.possible_rook_move = []
+        else:
+            print(f"{dicmove} is not yogurt")
 
     def squarecheck():
         pickfile = pickcell[0]
@@ -429,13 +443,9 @@ class DicCheck(PiecePosition):
         if PiecePosition.dic_chess[dicpick] == 'wrook1' or PiecePosition.dic_chess[dicpick] == 'wrook2' or \
                 PiecePosition.dic_chess[dicpick] == 'brook1' or PiecePosition.dic_chess[dicpick] == 'brook2':
             mp.rook()
-            print(rm.possible_rook_capture)
-            print(rm.possible_rook_move)
+
             # possible move list will be reset, only for now. later we will bind it to happen when move cell is clicked
-            rm.possible_rook_capture = []
-            rm.possible_rook_move = []
-            print(rm.possible_rook_capture)
-            print(rm.possible_rook_move)
+
         elif PiecePosition.dic_chess[dicpick] == 'wbishop1' or PiecePosition.dic_chess[dicpick] == 'wbishop2' or \
                 PiecePosition.dic_chess[dicpick] == 'bbishop1' or PiecePosition.dic_chess[dicpick] == 'bbishop2':
             # mp.bishop()
@@ -459,20 +469,10 @@ class DicCheck(PiecePosition):
             print('pawn nigga')
 
 
-    def movecheck():
-        movefile = movecell[0]
-        moverank = movecell[1]
-        dicmove = movecell[0] + movecell[1]
-
-        if PiecePosition.dic_chess[dicmove] == '':
-            PiecePosition.movepiece()
-        elif PiecePosition.dic_chess[dicmove][0] == 'b':
-            PiecePosition.capture()
-
-
 
             # PiecePosition.dic_chess[f'{movecell}'] = PiecePosition.dic_chess[f'{pickcell}']
             # PiecePosition.dic_chess[f'{pickcell}'] = ''
+
 
 class Cells(DicCheck):
     rank = []
@@ -502,7 +502,7 @@ class Cells(DicCheck):
             pickfile = pickcell[0]
             global pickrank
             pickrank = pickcell[1]
-            print(pickcell)
+
             self.squarecheck()
 
 
@@ -518,12 +518,12 @@ class Cells(DicCheck):
             movefile = movecell[0]
             global moverank
             moverank = movecell[1]
-            print(movecell)
-            print(movefile)
-            print(moverank)
-            PiecePosition.dic_chess[f'{movecell}'] = PiecePosition.dic_chess[f'{pickcell}']
-            PiecePosition.dic_chess[f'{pickcell}'] = ''
+
+            self.movecheck()
+            # PiecePosition.dic_chess[f'{movecell}'] = PiecePosition.dic_chess[f'{pickcell}']
+            # PiecePosition.dic_chess[f'{pickcell}'] = ''
             Cells.position = None
+
 
 square = Cells
 dc = DicCheck
@@ -531,8 +531,6 @@ rm = ValidRookMovement
 mp = PieceRules
 pp = PiecePosition
 main = Chess
-
-
 
 root.config(background='black')
 
@@ -562,3 +560,4 @@ exitButton = Button(root, text='Exit', width=20, height=3, fg="Black", bg='grey'
                                                                                                               y=275)
 print(square.position)
 root.mainloop()
+
