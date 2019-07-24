@@ -520,6 +520,7 @@ class PiecePosition:
         PiecePosition.dic_chess[f'{pickcell}'] = ''
 
 
+
 class PieceRules(PiecePosition):
 
 
@@ -1811,9 +1812,15 @@ class ValidPawnMovement(PiecePosition):
 class DicCheck(ValidRookMovement, ValidPawnMovement, ValidKnightMovement, ValidBishopMovement, ValidKingMovement, ValidQueenMovement):
 
     def movecheck():
-        movefile = movecell[0]
-        moverank = movecell[1]
+
+
         dicmove =str(movecell[0] + movecell[1])
+        global turn
+        # if str(pickcell[0] + pickrank[0]) == dicmove:
+        #     turn -= 1
+
+
+
 
 #################################################################### ROOK
 
@@ -1821,77 +1828,85 @@ class DicCheck(ValidRookMovement, ValidPawnMovement, ValidKnightMovement, ValidB
             PiecePosition.movepiece()
             ValidRookMovement.possible_rook_move = []
             ValidRookMovement.possible_rook_capture = []
+
         elif dicmove in ValidRookMovement.possible_rook_capture:
             PiecePosition.capture()
             ValidRookMovement.possible_rook_capture = []
             ValidRookMovement.possible_rook_move = []
+
         else:
-            pass
+
 
 #################################################################### BISHOP
 
-        if dicmove in ValidBishopMovement.possible_bishop_move:
-            PiecePosition.movepiece()
-            ValidBishopMovement.possible_bishop_move = []
-            ValidBishopMovement.possible_bishop_capture = []
-        elif dicmove in ValidBishopMovement.possible_bishop_capture:
-            PiecePosition.capture()
-            ValidBishopMovement.possible_bishop_capture = []
-            ValidBishopMovement.possible_bishop_move = []
-        else:
-            pass
-#################################################################### KNIGHT
+            if dicmove in ValidBishopMovement.possible_bishop_move:
+                PiecePosition.movepiece()
+                ValidBishopMovement.possible_bishop_move = []
+                ValidBishopMovement.possible_bishop_capture = []
 
-        if dicmove in ValidKnightMovement.possible_knight_move:
-            PiecePosition.movepiece()
-            ValidKnightMovement.possible_knight_move = []
-            ValidKnightMovement.possible_knight_capture = []
-        elif dicmove in ValidKnightMovement.possible_knight_capture:
-            PiecePosition.capture()
-            ValidKnightMovement.possible_knight_capture = []
-            ValidKnightMovement.possible_knight_move = []
-        else:
-            pass
+            elif dicmove in ValidBishopMovement.possible_bishop_capture:
+                PiecePosition.capture()
+                ValidBishopMovement.possible_bishop_capture = []
+                ValidBishopMovement.possible_bishop_move = []
 
-#################################################################### QUEEN
+            else:
+
+    #################################################################### KNIGHT
+
+                if dicmove in ValidKnightMovement.possible_knight_move:
+                    PiecePosition.movepiece()
+                    ValidKnightMovement.possible_knight_move = []
+                    ValidKnightMovement.possible_knight_capture = []
+
+                elif dicmove in ValidKnightMovement.possible_knight_capture:
+                    PiecePosition.capture()
+                    ValidKnightMovement.possible_knight_capture = []
+                    ValidKnightMovement.possible_knight_move = []
+
+                else:
 
 
-        if dicmove in ValidQueenMovement.possible_queen_move:
-            PiecePosition.movepiece()
-            ValidQueenMovement.possible_queen_move = []
-            ValidQueenMovement.possible_queen_capture = []
-        elif dicmove in ValidQueenMovement.possible_queen_capture:
-            PiecePosition.capture()
-            ValidQueenMovement.possible_queen_capture = []
-            ValidQueenMovement.possible_queen_move = []
-        else:
-            pass
+        #################################################################### QUEEN
 
-#################################################################### KING
 
-        if dicmove in ValidKingMovement.possible_king_move:
-            PiecePosition.movepiece()
-            ValidKingMovement.possible_king_move = []
-            ValidKingMovement.possible_king_capture = []
-        elif dicmove in ValidKingMovement.possible_king_capture:
-            PiecePosition.capture()
-            ValidKingMovement.possible_king_capture = []
-            ValidKingMovement.possible_king_move = []
-        else:
-            pass
+                    if dicmove in ValidQueenMovement.possible_queen_move:
+                        PiecePosition.movepiece()
+                        ValidQueenMovement.possible_queen_move = []
+                        ValidQueenMovement.possible_queen_capture = []
 
-#################################################################### PAWN
+                    elif dicmove in ValidQueenMovement.possible_queen_capture:
+                        PiecePosition.capture()
+                        ValidQueenMovement.possible_queen_capture = []
+                        ValidQueenMovement.possible_queen_move = []
 
-        if dicmove in ValidPawnMovement.possible_pawn_move:
-            PiecePosition.movepiece()
-            ValidPawnMovement.possible_pawn_move = []
-            ValidPawnMovement.possible_pawn_capture = []
-        elif dicmove in ValidPawnMovement.possible_pawn_capture:
-            PiecePosition.capture()
-            ValidPawnMovement.possible_pawn_capture = []
-            ValidPawnMovement.possible_pawn_move = []
-        else:
-            pass
+                    else:
+
+
+            #################################################################### KING
+
+                        if dicmove in ValidKingMovement.possible_king_move:
+                            PiecePosition.movepiece()
+                            ValidKingMovement.possible_king_move = []
+                            ValidKingMovement.possible_king_capture = []
+                        elif dicmove in ValidKingMovement.possible_king_capture:
+                            PiecePosition.capture()
+                            ValidKingMovement.possible_king_capture = []
+                            ValidKingMovement.possible_king_move = []
+                        else:
+
+
+                #################################################################### PAWN
+
+                            if dicmove in ValidPawnMovement.possible_pawn_move:
+                                PiecePosition.movepiece()
+                                ValidPawnMovement.possible_pawn_move = []
+                                ValidPawnMovement.possible_pawn_capture = []
+                            elif dicmove in ValidPawnMovement.possible_pawn_capture:
+                                PiecePosition.capture()
+                                ValidPawnMovement.possible_pawn_capture = []
+                                ValidPawnMovement.possible_pawn_move = []
+                            else:
+                                turn -= 1
 
 
     def squarecheck():
@@ -1899,50 +1914,67 @@ class DicCheck(ValidRookMovement, ValidPawnMovement, ValidKnightMovement, ValidB
         pickrank = pickcell[1]
         dicpick = pickcell[0] + pickcell[1]
 
-        if PiecePosition.dic_chess[dicpick] == 'wrook1' or PiecePosition.dic_chess[dicpick] == 'wrook2':
-            mp.whiterook()
+        if turn % 2 == 1:
+            if PiecePosition.dic_chess[dicpick] == 'wrook1' or PiecePosition.dic_chess[dicpick] == 'wrook2':
+                mp.whiterook()
 
-        elif PiecePosition.dic_chess[dicpick] == 'brook1' or PiecePosition.dic_chess[dicpick] == 'brook2':
-            mp.blackrook()
+            elif PiecePosition.dic_chess[dicpick] == 'wbishop1' or PiecePosition.dic_chess[dicpick] == 'wbishop2':
+                mp.whitebishop()
 
-        elif PiecePosition.dic_chess[dicpick] == 'wbishop1' or PiecePosition.dic_chess[dicpick] == 'wbishop2':
-            mp.whitebishop()
 
-        elif PiecePosition.dic_chess[dicpick] == 'bbishop1' or PiecePosition.dic_chess[dicpick] == 'bbishop2':
-            mp.blackbishop()
+            elif PiecePosition.dic_chess[dicpick] == 'wknight1' or PiecePosition.dic_chess[dicpick] == 'wknight2':
+                mp.whiteknight()
 
-        elif PiecePosition.dic_chess[dicpick] == 'wknight1' or PiecePosition.dic_chess[dicpick] == 'wknight2':
-            mp.whiteknight()
 
-        elif PiecePosition.dic_chess[dicpick] == 'bknight1' or PiecePosition.dic_chess[dicpick] == 'bknight2':
-            mp.blackknight()
+            elif PiecePosition.dic_chess[dicpick] == 'wqueen':
+                mp.whitequeen()
 
-        elif PiecePosition.dic_chess[dicpick] == 'wqueen':
-            mp.whitequeen()
 
-        elif PiecePosition.dic_chess[dicpick] == 'bqueen':
-            mp.blackqueen()
+            elif PiecePosition.dic_chess[dicpick] == 'wking':
+                mp.whiteking()
 
-        elif PiecePosition.dic_chess[dicpick] == 'wking':
-            mp.whiteking()
 
-        elif PiecePosition.dic_chess[dicpick] == 'bking':
-            mp.blackking()
+            elif PiecePosition.dic_chess[dicpick] == 'wpawn1' or PiecePosition.dic_chess[dicpick] == 'wpawn2' or \
+                    PiecePosition.dic_chess[dicpick] == 'wpawn3' or PiecePosition.dic_chess[dicpick] == 'wpawn4' or \
+                    PiecePosition.dic_chess[dicpick] == 'wpawn5' or PiecePosition.dic_chess[dicpick] == 'wpawn6' or \
+                    PiecePosition.dic_chess[dicpick] == 'wpawn7' or PiecePosition.dic_chess[dicpick] == 'wpawn8':
+                mp.whitepawn()
 
-        elif PiecePosition.dic_chess[dicpick] == 'wpawn1' or PiecePosition.dic_chess[dicpick] == 'wpawn2' or\
-                PiecePosition.dic_chess[dicpick] == 'wpawn3' or PiecePosition.dic_chess[dicpick] == 'wpawn4' or \
-                PiecePosition.dic_chess[dicpick] == 'wpawn5' or PiecePosition.dic_chess[dicpick] == 'wpawn6' or \
-                PiecePosition.dic_chess[dicpick] == 'wpawn7' or PiecePosition.dic_chess[dicpick] == 'wpawn8':
-            mp.whitepawn()
+            else:
+                pass
 
-        elif PiecePosition.dic_chess[dicpick] == 'bpawn1' or PiecePosition.dic_chess[dicpick] == 'bpawn2' or\
-                PiecePosition.dic_chess[dicpick] == 'bpawn3' or PiecePosition.dic_chess[dicpick] == 'bpawn4' or\
-                PiecePosition.dic_chess[dicpick] == 'bpawn5' or PiecePosition.dic_chess[dicpick] == 'bpawn6' or \
-                PiecePosition.dic_chess[dicpick] == 'bpawn7' or PiecePosition.dic_chess[dicpick] == 'bpawn8':
-            mp.blackpawn()
+        elif turn % 2 == 0:
+            if PiecePosition.dic_chess[dicpick] == 'brook1' or PiecePosition.dic_chess[dicpick] == 'brook2':
+                mp.blackrook()
 
+
+            elif PiecePosition.dic_chess[dicpick] == 'bbishop1' or PiecePosition.dic_chess[dicpick] == 'bbishop2':
+                mp.blackbishop()
+
+
+            elif PiecePosition.dic_chess[dicpick] == 'bknight1' or PiecePosition.dic_chess[dicpick] == 'bknight2':
+                mp.blackknight()
+
+
+            elif PiecePosition.dic_chess[dicpick] == 'bqueen':
+                mp.blackqueen()
+
+
+            elif PiecePosition.dic_chess[dicpick] == 'bking':
+                mp.blackking()
+
+
+            elif PiecePosition.dic_chess[dicpick] == 'bpawn1' or PiecePosition.dic_chess[dicpick] == 'bpawn2' or\
+                    PiecePosition.dic_chess[dicpick] == 'bpawn3' or PiecePosition.dic_chess[dicpick] == 'bpawn4' or\
+                    PiecePosition.dic_chess[dicpick] == 'bpawn5' or PiecePosition.dic_chess[dicpick] == 'bpawn6' or \
+                    PiecePosition.dic_chess[dicpick] == 'bpawn7' or PiecePosition.dic_chess[dicpick] == 'bpawn8':
+                mp.blackpawn()
+
+
+            else:
+                pass
         else:
-            print('pick again')
+            pass
 
 
 class Cells(DicCheck):
@@ -1960,9 +1992,9 @@ class Cells(DicCheck):
 
     position = None
     position2 = None
-
+    turn = 1
     def call_cell(self, r, f):
-        if Cells.position is None:
+        if Cells.position is None and Cells.turn % 2 == 1:
             coordinate = r + f
             Cells.position = coordinate
             print(f"{Cells.position} is pickcell")
@@ -1989,8 +2021,10 @@ class Cells(DicCheck):
             movefile = movecell[0]
             global moverank
             moverank = movecell[1]
+            global turn
 
             self.movecheck()
+            turn += 1
 
             if PiecePosition.dic_chess[movecell] != '':
                 main.chess_board()
@@ -2009,7 +2043,7 @@ pp = PiecePosition
 square = Cells
 dc = DicCheck
 main = Chess
-
+turn = 1
 root.config(background='black')
 
 root.minsize(918, 612)
