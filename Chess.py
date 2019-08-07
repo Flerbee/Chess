@@ -27,211 +27,216 @@ class Chess:
 
 
     def chess_board():
-        A8 = Button(root, image=pp.dicpic[pp.dic_chess['A8']], width=71, height=71, bg='brown',
-                    command=lambda: [square.call_cell(square, square.rank[0], square.file[7]), dc.squarecheck()])
-        B8 = Button(root, image=pp.dicpic[pp.dic_chess['B8']], width=71, height=71, bg='darkred',
-                    command=lambda: [square.call_cell(square, square.rank[1], square.file[7]), dc.squarecheck()])
-        C8 = Button(root, image=pp.dicpic[pp.dic_chess['C8']], width=71, height=71, bg='brown',
-                    command=lambda: [square.call_cell(square, square.rank[2], square.file[7]), dc.squarecheck()])
-        D8 = Button(root, image=pp.dicpic[pp.dic_chess['D8']], width=71, height=71, bg='darkred',
-                    command=lambda: [square.call_cell(square, square.rank[3], square.file[7]), dc.squarecheck()])
-        E8 = Button(root, image=pp.dicpic[pp.dic_chess['E8']], width=71, height=71, bg='brown',
-                    command=lambda: [square.call_cell(square, square.rank[4], square.file[7]), dc.squarecheck()])
-        F8 = Button(root, image=pp.dicpic[pp.dic_chess['F8']], width=71, height=71, bg='darkred',
-                    command=lambda: [square.call_cell(square, square.rank[5], square.file[7]), dc.squarecheck()])
-        G8 = Button(root, image=pp.dicpic[pp.dic_chess['G8']], width=71, height=71, bg='brown',
-                    command=lambda: [square.call_cell(square, square.rank[6], square.file[7]), dc.squarecheck()])
-        H8 = Button(root, image=pp.dicpic[pp.dic_chess['H8']], width=71, height=71, bg='darkred',
-                    command=lambda: [square.call_cell(square, square.rank[7], square.file[7]), dc.squarecheck()])
+        global win
+        if win:
+            WinLabel = LabelFrame(root, text="Checkmate", width=200, height= 299, fg='black')
+            WinLabel.place(x=400, y=200)
+        else:
+            A8 = Button(root, image=pp.dicpic[pp.dic_chess['A8']], width=71, height=71, bg='brown',
+                        command=lambda: [square.call_cell(square, square.rank[0], square.file[7]), dc.squarecheck()])
+            B8 = Button(root, image=pp.dicpic[pp.dic_chess['B8']], width=71, height=71, bg='darkred',
+                        command=lambda: [square.call_cell(square, square.rank[1], square.file[7]), dc.squarecheck()])
+            C8 = Button(root, image=pp.dicpic[pp.dic_chess['C8']], width=71, height=71, bg='brown',
+                        command=lambda: [square.call_cell(square, square.rank[2], square.file[7]), dc.squarecheck()])
+            D8 = Button(root, image=pp.dicpic[pp.dic_chess['D8']], width=71, height=71, bg='darkred',
+                        command=lambda: [square.call_cell(square, square.rank[3], square.file[7]), dc.squarecheck()])
+            E8 = Button(root, image=pp.dicpic[pp.dic_chess['E8']], width=71, height=71, bg='brown',
+                        command=lambda: [square.call_cell(square, square.rank[4], square.file[7]), dc.squarecheck()])
+            F8 = Button(root, image=pp.dicpic[pp.dic_chess['F8']], width=71, height=71, bg='darkred',
+                        command=lambda: [square.call_cell(square, square.rank[5], square.file[7]), dc.squarecheck()])
+            G8 = Button(root, image=pp.dicpic[pp.dic_chess['G8']], width=71, height=71, bg='brown',
+                        command=lambda: [square.call_cell(square, square.rank[6], square.file[7]), dc.squarecheck()])
+            H8 = Button(root, image=pp.dicpic[pp.dic_chess['H8']], width=71, height=71, bg='darkred',
+                        command=lambda: [square.call_cell(square, square.rank[7], square.file[7]), dc.squarecheck()])
 
-        A7 = Button(root, image=pp.dicpic[pp.dic_chess['A7']], width=71, height=71, bg='darkred',
-                    command=lambda: [square.call_cell(square, square.rank[0], square.file[6]), dc.squarecheck()])
-        B7 = Button(root, image=pp.dicpic[pp.dic_chess['B7']], width=71, height=71, bg='brown',
-                    command=lambda: [square.call_cell(square, square.rank[1], square.file[6]), dc.squarecheck()])
-        C7 = Button(root, image=pp.dicpic[pp.dic_chess['C7']], width=71, height=71, bg='darkred',
-                    command=lambda: [square.call_cell(square, square.rank[2], square.file[6]), dc.squarecheck()])
-        D7 = Button(root, image=pp.dicpic[pp.dic_chess['D7']], width=71, height=71, bg='brown',
-                    command=lambda: [square.call_cell(square, square.rank[3], square.file[6]), dc.squarecheck()])
-        E7 = Button(root, image=pp.dicpic[pp.dic_chess['E7']], width=71, height=71, bg='darkred',
-                    command=lambda: [square.call_cell(square, square.rank[4], square.file[6]), dc.squarecheck()])
-        F7 = Button(root, image=pp.dicpic[pp.dic_chess['F7']], width=71, height=71, bg='brown',
-                    command=lambda: [square.call_cell(square, square.rank[5], square.file[6]), dc.squarecheck()])
-        G7 = Button(root, image=pp.dicpic[pp.dic_chess['G7']], width=71, height=71, bg='darkred',
-                    command=lambda: [square.call_cell(square, square.rank[6], square.file[6]), dc.squarecheck()])
-        H7 = Button(root, image=pp.dicpic[pp.dic_chess['H7']], width=71, height=71, bg='brown',
-                    command=lambda: [square.call_cell(square, square.rank[7], square.file[6]), dc.squarecheck()])
+            A7 = Button(root, image=pp.dicpic[pp.dic_chess['A7']], width=71, height=71, bg='darkred',
+                        command=lambda: [square.call_cell(square, square.rank[0], square.file[6]), dc.squarecheck()])
+            B7 = Button(root, image=pp.dicpic[pp.dic_chess['B7']], width=71, height=71, bg='brown',
+                        command=lambda: [square.call_cell(square, square.rank[1], square.file[6]), dc.squarecheck()])
+            C7 = Button(root, image=pp.dicpic[pp.dic_chess['C7']], width=71, height=71, bg='darkred',
+                        command=lambda: [square.call_cell(square, square.rank[2], square.file[6]), dc.squarecheck()])
+            D7 = Button(root, image=pp.dicpic[pp.dic_chess['D7']], width=71, height=71, bg='brown',
+                        command=lambda: [square.call_cell(square, square.rank[3], square.file[6]), dc.squarecheck()])
+            E7 = Button(root, image=pp.dicpic[pp.dic_chess['E7']], width=71, height=71, bg='darkred',
+                        command=lambda: [square.call_cell(square, square.rank[4], square.file[6]), dc.squarecheck()])
+            F7 = Button(root, image=pp.dicpic[pp.dic_chess['F7']], width=71, height=71, bg='brown',
+                        command=lambda: [square.call_cell(square, square.rank[5], square.file[6]), dc.squarecheck()])
+            G7 = Button(root, image=pp.dicpic[pp.dic_chess['G7']], width=71, height=71, bg='darkred',
+                        command=lambda: [square.call_cell(square, square.rank[6], square.file[6]), dc.squarecheck()])
+            H7 = Button(root, image=pp.dicpic[pp.dic_chess['H7']], width=71, height=71, bg='brown',
+                        command=lambda: [square.call_cell(square, square.rank[7], square.file[6]), dc.squarecheck()])
 
-        A6 = Button(root, image=pp.dicpic[pp.dic_chess['A6']], width=71, height=71, bg='brown',
-                    command=lambda: [square.call_cell(square, square.rank[0], square.file[5]), dc.squarecheck()])
-        B6 = Button(root, image=pp.dicpic[pp.dic_chess['B6']], width=71, height=71, bg='darkred',
-                    command=lambda: [square.call_cell(square, square.rank[1], square.file[5]), dc.squarecheck()])
-        C6 = Button(root, image=pp.dicpic[pp.dic_chess['C6']], width=71, height=71, bg='brown',
-                    command=lambda: [square.call_cell(square, square.rank[2], square.file[5]), dc.squarecheck()])
-        D6 = Button(root, image=pp.dicpic[pp.dic_chess['D6']], width=71, height=71, bg='darkred',
-                    command=lambda: [square.call_cell(square, square.rank[3], square.file[5]), dc.squarecheck()])
-        E6 = Button(root, image=pp.dicpic[pp.dic_chess['E6']], width=71, height=71, bg='brown',
-                    command=lambda: [square.call_cell(square, square.rank[4], square.file[5]), dc.squarecheck()])
-        F6 = Button(root, image=pp.dicpic[pp.dic_chess['F6']], width=71, height=71, bg='darkred',
-                    command=lambda: [square.call_cell(square, square.rank[5], square.file[5]), dc.squarecheck()])
-        G6 = Button(root, image=pp.dicpic[pp.dic_chess['G6']], width=71, height=71, bg='brown',
-                    command=lambda: [square.call_cell(square, square.rank[6], square.file[5]), dc.squarecheck()])
-        H6 = Button(root, image=pp.dicpic[pp.dic_chess['H6']], width=71, height=71, bg='darkred',
-                    command=lambda: [square.call_cell(square, square.rank[7], square.file[5]), dc.squarecheck()])
+            A6 = Button(root, image=pp.dicpic[pp.dic_chess['A6']], width=71, height=71, bg='brown',
+                        command=lambda: [square.call_cell(square, square.rank[0], square.file[5]), dc.squarecheck()])
+            B6 = Button(root, image=pp.dicpic[pp.dic_chess['B6']], width=71, height=71, bg='darkred',
+                        command=lambda: [square.call_cell(square, square.rank[1], square.file[5]), dc.squarecheck()])
+            C6 = Button(root, image=pp.dicpic[pp.dic_chess['C6']], width=71, height=71, bg='brown',
+                        command=lambda: [square.call_cell(square, square.rank[2], square.file[5]), dc.squarecheck()])
+            D6 = Button(root, image=pp.dicpic[pp.dic_chess['D6']], width=71, height=71, bg='darkred',
+                        command=lambda: [square.call_cell(square, square.rank[3], square.file[5]), dc.squarecheck()])
+            E6 = Button(root, image=pp.dicpic[pp.dic_chess['E6']], width=71, height=71, bg='brown',
+                        command=lambda: [square.call_cell(square, square.rank[4], square.file[5]), dc.squarecheck()])
+            F6 = Button(root, image=pp.dicpic[pp.dic_chess['F6']], width=71, height=71, bg='darkred',
+                        command=lambda: [square.call_cell(square, square.rank[5], square.file[5]), dc.squarecheck()])
+            G6 = Button(root, image=pp.dicpic[pp.dic_chess['G6']], width=71, height=71, bg='brown',
+                        command=lambda: [square.call_cell(square, square.rank[6], square.file[5]), dc.squarecheck()])
+            H6 = Button(root, image=pp.dicpic[pp.dic_chess['H6']], width=71, height=71, bg='darkred',
+                        command=lambda: [square.call_cell(square, square.rank[7], square.file[5]), dc.squarecheck()])
 
-        A5 = Button(root, image=pp.dicpic[pp.dic_chess['A5']], width=71, height=71, bg='darkred',
-                    command=lambda: [square.call_cell(square, square.rank[0], square.file[4]), dc.squarecheck()])
-        B5 = Button(root, image=pp.dicpic[pp.dic_chess['B5']], width=71, height=71, bg='brown',
-                    command=lambda: [square.call_cell(square, square.rank[1], square.file[4]), dc.squarecheck()])
-        C5 = Button(root, image=pp.dicpic[pp.dic_chess['C5']], width=71, height=71, bg='darkred',
-                    command=lambda: [square.call_cell(square, square.rank[2], square.file[4]), dc.squarecheck()])
-        D5 = Button(root, image=pp.dicpic[pp.dic_chess['D5']], width=71, height=71, bg='brown',
-                    command=lambda: [square.call_cell(square, square.rank[3], square.file[4]), dc.squarecheck()])
-        E5 = Button(root, image=pp.dicpic[pp.dic_chess['E5']], width=71, height=71, bg='darkred',
-                    command=lambda: [square.call_cell(square, square.rank[4], square.file[4]), dc.squarecheck()])
-        F5 = Button(root, image=pp.dicpic[pp.dic_chess['F5']], width=71, height=71, bg='brown',
-                    command=lambda: [square.call_cell(square, square.rank[5], square.file[4]), dc.squarecheck()])
-        G5 = Button(root, image=pp.dicpic[pp.dic_chess['G5']], width=71, height=71, bg='darkred',
-                    command=lambda: [square.call_cell(square, square.rank[6], square.file[4]), dc.squarecheck()])
-        H5 = Button(root, image=pp.dicpic[pp.dic_chess['H5']], width=71, height=71, bg='brown',
-                    command=lambda: [square.call_cell(square, square.rank[7], square.file[4]), dc.squarecheck()])
+            A5 = Button(root, image=pp.dicpic[pp.dic_chess['A5']], width=71, height=71, bg='darkred',
+                        command=lambda: [square.call_cell(square, square.rank[0], square.file[4]), dc.squarecheck()])
+            B5 = Button(root, image=pp.dicpic[pp.dic_chess['B5']], width=71, height=71, bg='brown',
+                        command=lambda: [square.call_cell(square, square.rank[1], square.file[4]), dc.squarecheck()])
+            C5 = Button(root, image=pp.dicpic[pp.dic_chess['C5']], width=71, height=71, bg='darkred',
+                        command=lambda: [square.call_cell(square, square.rank[2], square.file[4]), dc.squarecheck()])
+            D5 = Button(root, image=pp.dicpic[pp.dic_chess['D5']], width=71, height=71, bg='brown',
+                        command=lambda: [square.call_cell(square, square.rank[3], square.file[4]), dc.squarecheck()])
+            E5 = Button(root, image=pp.dicpic[pp.dic_chess['E5']], width=71, height=71, bg='darkred',
+                        command=lambda: [square.call_cell(square, square.rank[4], square.file[4]), dc.squarecheck()])
+            F5 = Button(root, image=pp.dicpic[pp.dic_chess['F5']], width=71, height=71, bg='brown',
+                        command=lambda: [square.call_cell(square, square.rank[5], square.file[4]), dc.squarecheck()])
+            G5 = Button(root, image=pp.dicpic[pp.dic_chess['G5']], width=71, height=71, bg='darkred',
+                        command=lambda: [square.call_cell(square, square.rank[6], square.file[4]), dc.squarecheck()])
+            H5 = Button(root, image=pp.dicpic[pp.dic_chess['H5']], width=71, height=71, bg='brown',
+                        command=lambda: [square.call_cell(square, square.rank[7], square.file[4]), dc.squarecheck()])
 
-        A4 = Button(root, image=pp.dicpic[pp.dic_chess['A4']], width=71, height=71, bg='brown',
-                    command=lambda: [square.call_cell(square, square.rank[0], square.file[3]), dc.squarecheck()])
-        B4 = Button(root, image=pp.dicpic[pp.dic_chess['B4']], width=71, height=71, bg='darkred',
-                    command=lambda: [square.call_cell(square, square.rank[1], square.file[3]), dc.squarecheck()])
-        C4 = Button(root, image=pp.dicpic[pp.dic_chess['C4']], width=71, height=71, bg='brown',
-                    command=lambda: [square.call_cell(square, square.rank[2], square.file[3]), dc.squarecheck()])
-        D4 = Button(root, image=pp.dicpic[pp.dic_chess['D4']], width=71, height=71, bg='darkred',
-                    command=lambda: [square.call_cell(square, square.rank[3], square.file[3]), dc.squarecheck()])
-        E4 = Button(root, image=pp.dicpic[pp.dic_chess['E4']], width=71, height=71, bg='brown',
-                    command=lambda: [square.call_cell(square, square.rank[4], square.file[3]), dc.squarecheck()])
-        F4 = Button(root, image=pp.dicpic[pp.dic_chess['F4']], width=71, height=71, bg='darkred',
-                    command=lambda: [square.call_cell(square, square.rank[5], square.file[3]), dc.squarecheck()])
-        G4 = Button(root, image=pp.dicpic[pp.dic_chess['G4']], width=71, height=71, bg='brown',
-                    command=lambda: [square.call_cell(square, square.rank[6], square.file[3]), dc.squarecheck()])
-        H4 = Button(root, image=pp.dicpic[pp.dic_chess['H4']], width=71, height=71, bg='darkred',
-                    command=lambda: [square.call_cell(square, square.rank[7], square.file[3]), dc.squarecheck()])
+            A4 = Button(root, image=pp.dicpic[pp.dic_chess['A4']], width=71, height=71, bg='brown',
+                        command=lambda: [square.call_cell(square, square.rank[0], square.file[3]), dc.squarecheck()])
+            B4 = Button(root, image=pp.dicpic[pp.dic_chess['B4']], width=71, height=71, bg='darkred',
+                        command=lambda: [square.call_cell(square, square.rank[1], square.file[3]), dc.squarecheck()])
+            C4 = Button(root, image=pp.dicpic[pp.dic_chess['C4']], width=71, height=71, bg='brown',
+                        command=lambda: [square.call_cell(square, square.rank[2], square.file[3]), dc.squarecheck()])
+            D4 = Button(root, image=pp.dicpic[pp.dic_chess['D4']], width=71, height=71, bg='darkred',
+                        command=lambda: [square.call_cell(square, square.rank[3], square.file[3]), dc.squarecheck()])
+            E4 = Button(root, image=pp.dicpic[pp.dic_chess['E4']], width=71, height=71, bg='brown',
+                        command=lambda: [square.call_cell(square, square.rank[4], square.file[3]), dc.squarecheck()])
+            F4 = Button(root, image=pp.dicpic[pp.dic_chess['F4']], width=71, height=71, bg='darkred',
+                        command=lambda: [square.call_cell(square, square.rank[5], square.file[3]), dc.squarecheck()])
+            G4 = Button(root, image=pp.dicpic[pp.dic_chess['G4']], width=71, height=71, bg='brown',
+                        command=lambda: [square.call_cell(square, square.rank[6], square.file[3]), dc.squarecheck()])
+            H4 = Button(root, image=pp.dicpic[pp.dic_chess['H4']], width=71, height=71, bg='darkred',
+                        command=lambda: [square.call_cell(square, square.rank[7], square.file[3]), dc.squarecheck()])
 
-        A3 = Button(root, image=pp.dicpic[pp.dic_chess['A3']], width=71, height=71, bg='darkred',
-                    command=lambda: [square.call_cell(square, square.rank[0], square.file[2]), dc.squarecheck()])
-        B3 = Button(root, image=pp.dicpic[pp.dic_chess['B3']], width=71, height=71, bg='brown',
-                    command=lambda: [square.call_cell(square, square.rank[1], square.file[2]), dc.squarecheck()])
-        C3 = Button(root, image=pp.dicpic[pp.dic_chess['C3']], width=71, height=71, bg='darkred',
-                    command=lambda: [square.call_cell(square, square.rank[2], square.file[2]), dc.squarecheck()])
-        D3 = Button(root, image=pp.dicpic[pp.dic_chess['D3']], width=71, height=71, bg='brown',
-                    command=lambda: [square.call_cell(square, square.rank[3], square.file[2]), dc.squarecheck()])
-        E3 = Button(root, image=pp.dicpic[pp.dic_chess['E3']], width=71, height=71, bg='darkred',
-                    command=lambda: [square.call_cell(square, square.rank[4], square.file[2]), dc.squarecheck()])
-        F3 = Button(root, image=pp.dicpic[pp.dic_chess['F3']], width=71, height=71, bg='brown',
-                    command=lambda: [square.call_cell(square, square.rank[5], square.file[2]), dc.squarecheck()])
-        G3 = Button(root, image=pp.dicpic[pp.dic_chess['G3']], width=71, height=71, bg='darkred',
-                    command=lambda: [square.call_cell(square, square.rank[6], square.file[2]), dc.squarecheck()])
-        H3 = Button(root, image=pp.dicpic[pp.dic_chess['H3']], width=71, height=71, bg='brown',
-                    command=lambda: [square.call_cell(square, square.rank[7], square.file[2]), dc.squarecheck()])
+            A3 = Button(root, image=pp.dicpic[pp.dic_chess['A3']], width=71, height=71, bg='darkred',
+                        command=lambda: [square.call_cell(square, square.rank[0], square.file[2]), dc.squarecheck()])
+            B3 = Button(root, image=pp.dicpic[pp.dic_chess['B3']], width=71, height=71, bg='brown',
+                        command=lambda: [square.call_cell(square, square.rank[1], square.file[2]), dc.squarecheck()])
+            C3 = Button(root, image=pp.dicpic[pp.dic_chess['C3']], width=71, height=71, bg='darkred',
+                        command=lambda: [square.call_cell(square, square.rank[2], square.file[2]), dc.squarecheck()])
+            D3 = Button(root, image=pp.dicpic[pp.dic_chess['D3']], width=71, height=71, bg='brown',
+                        command=lambda: [square.call_cell(square, square.rank[3], square.file[2]), dc.squarecheck()])
+            E3 = Button(root, image=pp.dicpic[pp.dic_chess['E3']], width=71, height=71, bg='darkred',
+                        command=lambda: [square.call_cell(square, square.rank[4], square.file[2]), dc.squarecheck()])
+            F3 = Button(root, image=pp.dicpic[pp.dic_chess['F3']], width=71, height=71, bg='brown',
+                        command=lambda: [square.call_cell(square, square.rank[5], square.file[2]), dc.squarecheck()])
+            G3 = Button(root, image=pp.dicpic[pp.dic_chess['G3']], width=71, height=71, bg='darkred',
+                        command=lambda: [square.call_cell(square, square.rank[6], square.file[2]), dc.squarecheck()])
+            H3 = Button(root, image=pp.dicpic[pp.dic_chess['H3']], width=71, height=71, bg='brown',
+                        command=lambda: [square.call_cell(square, square.rank[7], square.file[2]), dc.squarecheck()])
 
-        A2 = Button(root, image=pp.dicpic[pp.dic_chess['A2']], width=71, height=71, bg='brown',
-                    command=lambda: [square.call_cell(square, square.rank[0], square.file[1]), dc.squarecheck()])
-        B2 = Button(root, image=pp.dicpic[pp.dic_chess['B2']], width=71, height=71, bg='darkred',
-                    command=lambda: [square.call_cell(square, square.rank[1], square.file[1]), dc.squarecheck()])
-        C2 = Button(root, image=pp.dicpic[pp.dic_chess['C2']], width=71, height=71, bg='brown',
-                    command=lambda: [square.call_cell(square, square.rank[2], square.file[1]), dc.squarecheck()])
-        D2 = Button(root, image=pp.dicpic[pp.dic_chess['D2']], width=71, height=71, bg='darkred',
-                    command=lambda: [square.call_cell(square, square.rank[3], square.file[1]), dc.squarecheck()])
-        E2 = Button(root, image=pp.dicpic[pp.dic_chess['E2']], width=71, height=71, bg='brown',
-                    command=lambda: [square.call_cell(square, square.rank[4], square.file[1]), dc.squarecheck()])
-        F2 = Button(root, image=pp.dicpic[pp.dic_chess['F2']], width=71, height=71, bg='darkred',
-                    command=lambda: [square.call_cell(square, square.rank[5], square.file[1]), dc.squarecheck()])
-        G2 = Button(root, image=pp.dicpic[pp.dic_chess['G2']], width=71, height=71, bg='brown',
-                    command=lambda: [square.call_cell(square, square.rank[6], square.file[1]), dc.squarecheck()])
-        H2 = Button(root, image=pp.dicpic[pp.dic_chess['H2']], width=71, height=71, bg='darkred',
-                    command=lambda: [square.call_cell(square, square.rank[7], square.file[1]), dc.squarecheck()])
+            A2 = Button(root, image=pp.dicpic[pp.dic_chess['A2']], width=71, height=71, bg='brown',
+                        command=lambda: [square.call_cell(square, square.rank[0], square.file[1]), dc.squarecheck()])
+            B2 = Button(root, image=pp.dicpic[pp.dic_chess['B2']], width=71, height=71, bg='darkred',
+                        command=lambda: [square.call_cell(square, square.rank[1], square.file[1]), dc.squarecheck()])
+            C2 = Button(root, image=pp.dicpic[pp.dic_chess['C2']], width=71, height=71, bg='brown',
+                        command=lambda: [square.call_cell(square, square.rank[2], square.file[1]), dc.squarecheck()])
+            D2 = Button(root, image=pp.dicpic[pp.dic_chess['D2']], width=71, height=71, bg='darkred',
+                        command=lambda: [square.call_cell(square, square.rank[3], square.file[1]), dc.squarecheck()])
+            E2 = Button(root, image=pp.dicpic[pp.dic_chess['E2']], width=71, height=71, bg='brown',
+                        command=lambda: [square.call_cell(square, square.rank[4], square.file[1]), dc.squarecheck()])
+            F2 = Button(root, image=pp.dicpic[pp.dic_chess['F2']], width=71, height=71, bg='darkred',
+                        command=lambda: [square.call_cell(square, square.rank[5], square.file[1]), dc.squarecheck()])
+            G2 = Button(root, image=pp.dicpic[pp.dic_chess['G2']], width=71, height=71, bg='brown',
+                        command=lambda: [square.call_cell(square, square.rank[6], square.file[1]), dc.squarecheck()])
+            H2 = Button(root, image=pp.dicpic[pp.dic_chess['H2']], width=71, height=71, bg='darkred',
+                        command=lambda: [square.call_cell(square, square.rank[7], square.file[1]), dc.squarecheck()])
 
-        A1 = Button(root, image=pp.dicpic[pp.dic_chess['A1']], width=71, height=71, bg='darkred',
-                    command=lambda: [square.call_cell(square, square.rank[0], square.file[0]), dc.squarecheck()])
-        B1 = Button(root, image=pp.dicpic[pp.dic_chess['B1']], width=71, height=71, bg='brown',
-                    command=lambda: [square.call_cell(square, square.rank[1], square.file[0]), dc.squarecheck()])
-        C1 = Button(root, image=pp.dicpic[pp.dic_chess['C1']], width=71, height=71, bg='darkred',
-                    command=lambda: [square.call_cell(square, square.rank[2], square.file[0]), dc.squarecheck()])
-        D1 = Button(root, image=pp.dicpic[pp.dic_chess['D1']], width=71, height=71, bg='brown',
-                    command=lambda: [square.call_cell(square, square.rank[3], square.file[0]), dc.squarecheck()])
-        E1 = Button(root, image=pp.dicpic[pp.dic_chess['E1']], width=71, height=71, bg='darkred',
-                    command=lambda: [square.call_cell(square, square.rank[4], square.file[0]), dc.squarecheck()])
-        F1 = Button(root, image=pp.dicpic[pp.dic_chess['F1']], width=71, height=71, bg='brown',
-                    command=lambda: [square.call_cell(square, square.rank[5], square.file[0]), dc.squarecheck()])
-        G1 = Button(root, image=pp.dicpic[pp.dic_chess['G1']], width=71, height=71, bg='darkred',
-                    command=lambda: [square.call_cell(square, square.rank[6], square.file[0]), dc.squarecheck()])
-        H1 = Button(root, image=pp.dicpic[pp.dic_chess['H1']], width=71, height=71, bg='brown',
-                    command=lambda: [square.call_cell(square, square.rank[7], square.file[0]), dc.squarecheck()])
+            A1 = Button(root, image=pp.dicpic[pp.dic_chess['A1']], width=71, height=71, bg='darkred',
+                        command=lambda: [square.call_cell(square, square.rank[0], square.file[0]), dc.squarecheck()])
+            B1 = Button(root, image=pp.dicpic[pp.dic_chess['B1']], width=71, height=71, bg='brown',
+                        command=lambda: [square.call_cell(square, square.rank[1], square.file[0]), dc.squarecheck()])
+            C1 = Button(root, image=pp.dicpic[pp.dic_chess['C1']], width=71, height=71, bg='darkred',
+                        command=lambda: [square.call_cell(square, square.rank[2], square.file[0]), dc.squarecheck()])
+            D1 = Button(root, image=pp.dicpic[pp.dic_chess['D1']], width=71, height=71, bg='brown',
+                        command=lambda: [square.call_cell(square, square.rank[3], square.file[0]), dc.squarecheck()])
+            E1 = Button(root, image=pp.dicpic[pp.dic_chess['E1']], width=71, height=71, bg='darkred',
+                        command=lambda: [square.call_cell(square, square.rank[4], square.file[0]), dc.squarecheck()])
+            F1 = Button(root, image=pp.dicpic[pp.dic_chess['F1']], width=71, height=71, bg='brown',
+                        command=lambda: [square.call_cell(square, square.rank[5], square.file[0]), dc.squarecheck()])
+            G1 = Button(root, image=pp.dicpic[pp.dic_chess['G1']], width=71, height=71, bg='darkred',
+                        command=lambda: [square.call_cell(square, square.rank[6], square.file[0]), dc.squarecheck()])
+            H1 = Button(root, image=pp.dicpic[pp.dic_chess['H1']], width=71, height=71, bg='brown',
+                        command=lambda: [square.call_cell(square, square.rank[7], square.file[0]), dc.squarecheck()])
 
-        fix1 = Frame(root, width=327, height=612, bg='black')
-        fix1.place(x=24 + 71 * 8, y=0)
-        fix2 = Frame(root, height=21, width=612, bg='black')
-        fix2.place(x=24, y=591)
+            fix1 = Frame(root, width=327, height=612, bg='black')
+            fix1.place(x=24 + 71 * 8, y=0)
+            fix2 = Frame(root, height=21, width=612, bg='black')
+            fix2.place(x=24, y=591)
 
-        A8.place(x=24, y=22)
-        B8.place(x=24 + 71, y=22)
-        C8.place(x=24 + 71 * 2, y=22)
-        D8.place(x=24 + 71 * 3, y=22)
-        E8.place(x=24 + 71 * 4, y=22)
-        F8.place(x=24 + 71 * 5, y=22)
-        G8.place(x=24 + 71 * 6, y=22)
-        H8.place(x=24 + 71 * 7, y=22)
-        A7.place(x=24, y=22 + 71)
-        B7.place(x=24 + 71, y=22 + 71)
-        C7.place(x=24 + 71 * 2, y=22 + 71)
-        D7.place(x=24 + 71 * 3, y=22 + 71)
-        E7.place(x=24 + 71 * 4, y=22 + 71)
-        F7.place(x=24 + 71 * 5, y=22 + 71)
-        G7.place(x=24 + 71 * 6, y=22 + 71)
-        H7.place(x=24 + 71 * 7, y=22 + 71)
-        A6.place(x=24, y=22 + 71 * 2)
-        B6.place(x=24 + 71, y=22 + 71 * 2)
-        C6.place(x=24 + 71 * 2, y=22 + 71 * 2)
-        D6.place(x=24 + 71 * 3, y=22 + 71 * 2)
-        E6.place(x=24 + 71 * 4, y=22 + 71 * 2)
-        F6.place(x=24 + 71 * 5, y=22 + 71 * 2)
-        G6.place(x=24 + 71 * 6, y=22 + 71 * 2)
-        H6.place(x=24 + 71 * 7, y=22 + 71 * 2)
-        A5.place(x=24, y=22 + 71 * 3)
-        B5.place(x=24 + 71, y=22 + 71 * 3)
-        C5.place(x=24 + 71 * 2, y=22 + 71 * 3)
-        D5.place(x=24 + 71 * 3, y=22 + 71 * 3)
-        E5.place(x=24 + 71 * 4, y=22 + 71 * 3)
-        F5.place(x=24 + 71 * 5, y=22 + 71 * 3)
-        G5.place(x=24 + 71 * 6, y=22 + 71 * 3)
-        H5.place(x=24 + 71 * 7, y=22 + 71 * 3)
-        A4.place(x=24, y=22 + 71 * 4)
-        B4.place(x=24 + 71, y=22 + 71 * 4)
-        C4.place(x=24 + 71 * 2, y=22 + 71 * 4)
-        D4.place(x=24 + 71 * 3, y=22 + 71 * 4)
-        E4.place(x=24 + 71 * 4, y=22 + 71 * 4)
-        F4.place(x=24 + 71 * 5, y=22 + 71 * 4)
-        G4.place(x=24 + 71 * 6, y=22 + 71 * 4)
-        H4.place(x=24 + 71 * 7, y=22 + 71 * 4)
-        A3.place(x=24, y=22 + 71 * 5)
-        B3.place(x=24 + 71, y=22 + 71 * 5)
-        C3.place(x=24 + 71 * 2, y=22 + 71 * 5)
-        D3.place(x=24 + 71 * 3, y=22 + 71 * 5)
-        E3.place(x=24 + 71 * 4, y=22 + 71 * 5)
-        F3.place(x=24 + 71 * 5, y=22 + 71 * 5)
-        G3.place(x=24 + 71 * 6, y=22 + 71 * 5)
-        H3.place(x=24 + 71 * 7, y=22 + 71 * 5)
-        A2.place(x=24, y=22 + 71 * 6)
-        B2.place(x=24 + 71, y=22 + 71 * 6)
-        C2.place(x=24 + 71 * 2, y=22 + 71 * 6)
-        D2.place(x=24 + 71 * 3, y=22 + 71 * 6)
-        E2.place(x=24 + 71 * 4, y=22 + 71 * 6)
-        F2.place(x=24 + 71 * 5, y=22 + 71 * 6)
-        G2.place(x=24 + 71 * 6, y=22 + 71 * 6)
-        H2.place(x=24 + 71 * 7, y=22 + 71 * 6)
-        A1.place(x=24, y=22 + 71 * 7)
-        B1.place(x=24 + 71, y=22 + 71 * 7)
-        C1.place(x=24 + 71 * 2, y=22 + 71 * 7)
-        D1.place(x=24 + 71 * 3, y=22 + 71 * 7)
-        E1.place(x=24 + 71 * 4, y=22 + 71 * 7)
-        F1.place(x=24 + 71 * 5, y=22 + 71 * 7)
-        G1.place(x=24 + 71 * 6, y=22 + 71 * 7)
-        H1.place(x=24 + 71 * 7, y=22 + 71 * 7)
+            A8.place(x=24, y=22)
+            B8.place(x=24 + 71, y=22)
+            C8.place(x=24 + 71 * 2, y=22)
+            D8.place(x=24 + 71 * 3, y=22)
+            E8.place(x=24 + 71 * 4, y=22)
+            F8.place(x=24 + 71 * 5, y=22)
+            G8.place(x=24 + 71 * 6, y=22)
+            H8.place(x=24 + 71 * 7, y=22)
+            A7.place(x=24, y=22 + 71)
+            B7.place(x=24 + 71, y=22 + 71)
+            C7.place(x=24 + 71 * 2, y=22 + 71)
+            D7.place(x=24 + 71 * 3, y=22 + 71)
+            E7.place(x=24 + 71 * 4, y=22 + 71)
+            F7.place(x=24 + 71 * 5, y=22 + 71)
+            G7.place(x=24 + 71 * 6, y=22 + 71)
+            H7.place(x=24 + 71 * 7, y=22 + 71)
+            A6.place(x=24, y=22 + 71 * 2)
+            B6.place(x=24 + 71, y=22 + 71 * 2)
+            C6.place(x=24 + 71 * 2, y=22 + 71 * 2)
+            D6.place(x=24 + 71 * 3, y=22 + 71 * 2)
+            E6.place(x=24 + 71 * 4, y=22 + 71 * 2)
+            F6.place(x=24 + 71 * 5, y=22 + 71 * 2)
+            G6.place(x=24 + 71 * 6, y=22 + 71 * 2)
+            H6.place(x=24 + 71 * 7, y=22 + 71 * 2)
+            A5.place(x=24, y=22 + 71 * 3)
+            B5.place(x=24 + 71, y=22 + 71 * 3)
+            C5.place(x=24 + 71 * 2, y=22 + 71 * 3)
+            D5.place(x=24 + 71 * 3, y=22 + 71 * 3)
+            E5.place(x=24 + 71 * 4, y=22 + 71 * 3)
+            F5.place(x=24 + 71 * 5, y=22 + 71 * 3)
+            G5.place(x=24 + 71 * 6, y=22 + 71 * 3)
+            H5.place(x=24 + 71 * 7, y=22 + 71 * 3)
+            A4.place(x=24, y=22 + 71 * 4)
+            B4.place(x=24 + 71, y=22 + 71 * 4)
+            C4.place(x=24 + 71 * 2, y=22 + 71 * 4)
+            D4.place(x=24 + 71 * 3, y=22 + 71 * 4)
+            E4.place(x=24 + 71 * 4, y=22 + 71 * 4)
+            F4.place(x=24 + 71 * 5, y=22 + 71 * 4)
+            G4.place(x=24 + 71 * 6, y=22 + 71 * 4)
+            H4.place(x=24 + 71 * 7, y=22 + 71 * 4)
+            A3.place(x=24, y=22 + 71 * 5)
+            B3.place(x=24 + 71, y=22 + 71 * 5)
+            C3.place(x=24 + 71 * 2, y=22 + 71 * 5)
+            D3.place(x=24 + 71 * 3, y=22 + 71 * 5)
+            E3.place(x=24 + 71 * 4, y=22 + 71 * 5)
+            F3.place(x=24 + 71 * 5, y=22 + 71 * 5)
+            G3.place(x=24 + 71 * 6, y=22 + 71 * 5)
+            H3.place(x=24 + 71 * 7, y=22 + 71 * 5)
+            A2.place(x=24, y=22 + 71 * 6)
+            B2.place(x=24 + 71, y=22 + 71 * 6)
+            C2.place(x=24 + 71 * 2, y=22 + 71 * 6)
+            D2.place(x=24 + 71 * 3, y=22 + 71 * 6)
+            E2.place(x=24 + 71 * 4, y=22 + 71 * 6)
+            F2.place(x=24 + 71 * 5, y=22 + 71 * 6)
+            G2.place(x=24 + 71 * 6, y=22 + 71 * 6)
+            H2.place(x=24 + 71 * 7, y=22 + 71 * 6)
+            A1.place(x=24, y=22 + 71 * 7)
+            B1.place(x=24 + 71, y=22 + 71 * 7)
+            C1.place(x=24 + 71 * 2, y=22 + 71 * 7)
+            D1.place(x=24 + 71 * 3, y=22 + 71 * 7)
+            E1.place(x=24 + 71 * 4, y=22 + 71 * 7)
+            F1.place(x=24 + 71 * 5, y=22 + 71 * 7)
+            G1.place(x=24 + 71 * 6, y=22 + 71 * 7)
+            H1.place(x=24 + 71 * 7, y=22 + 71 * 7)
 
     # def chess_board_black:
     #     A8 = Button(root, image=pp.dicpic[pp.dic_chess['A8']], width=71, height=71, bg='brown',
@@ -512,8 +517,17 @@ class PiecePosition:
 
     def capture():
         # todo PiecePosition.dic_chess[f'{movecell}'] = sidebar
+        global win
+        if PiecePosition.dic_chess[f"{movecell}"] == 'wking':
+            print('blak win')
+            win = True
+        elif PiecePosition.dic_chess[f"{movecell}"] == 'bking':
+            print('whit win')
+            win = True
+
         PiecePosition.dic_chess[f'{movecell}'] = PiecePosition.dic_chess[f'{pickcell}']
         PiecePosition.dic_chess[f'{pickcell}'] = ''
+
 
     def movepiece():
         PiecePosition.dic_chess[f'{movecell}'] = PiecePosition.dic_chess[f'{pickcell}']
@@ -2030,8 +2044,16 @@ class Cells(DicCheck):
                 main.chess_board()
 
             Cells.position = None
+class CheckMate(PiecePosition):
+    def checkandmate():
+        if 'wking' not in PiecePosition.dic_chess:
+            print("blak win")
+
+        else:
+            pass
 
 
+mate = CheckMate
 bm = ValidBishopMovement
 rm = ValidRookMovement
 pm = ValidPawnMovement
@@ -2044,6 +2066,7 @@ square = Cells
 dc = DicCheck
 main = Chess
 turn = 1
+win = False
 root.config(background='black')
 
 root.minsize(918, 612)
@@ -2072,5 +2095,5 @@ playButton = Button(root, text="Play Chess", width=20, height=3, fg="Black", bg=
 
 exitButton = Button(root, text='Exit', width=20, height=3, fg="Black", bg='grey', command=root.destroy).place(x=375,
                                                                                                               y=375)
-print(square.position)
+
 root.mainloop()
